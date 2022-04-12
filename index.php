@@ -7,8 +7,6 @@ $resultDeviceType = $dblink->query($sql1) or die("Something went wrong with $sql
 $sql2 = "SELECT DISTINCT `manufacturer` FROM `device_table` limit 10000";
 $resultManufacturer = $dblink->query($sql2) or die("Something went wrong with $sql2");
 
-$sql3 = "SELECT DISTINCT `serial_number` FROM `device_table` limit 10000";
-$resultSerialNumber = $dblink->query($sql3) or die("Something went wrong with $sql3");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,18 +63,7 @@ $resultSerialNumber = $dblink->query($sql3) or die("Something went wrong with $s
 	    			<h6>Serial number: 
 	    				<br>
 	    				<br>
-				      	<select class="custom-select" name="serial_number" id="">
-				          <option value="">--</option>
-				          	<?php
-					          	foreach ($resultSerialNumber as $key => $value){
-									echo '<option value="'.trim($value['serial_number']).'"';
-									if(isset($_REQUEST['serial_number']) && trim($_REQUEST['serial_number']) == trim($value['serial_number'])){
-										echo ' selected';
-									}
-									echo '>'.trim($value['serial_number']).'</option>';
-								}
-				          	?>
-				        </select>
+				      	<input type="text" name="serial_number">
 				      </h6>
 	    		</div>
 	    	</div>
@@ -94,6 +81,7 @@ $resultSerialNumber = $dblink->query($sql3) or die("Something went wrong with $s
 		      <th scope="col">Device type</th>
 		      <th scope="col">Manufacturer</th>
 		      <th scope="col">Serial number</th>
+		      <th scope="col">Status</th>
 		      <th scope="col">Action</th>
 		    </tr>
 		  </thead>
@@ -151,6 +139,7 @@ $resultSerialNumber = $dblink->query($sql3) or die("Something went wrong with $s
 			      <td><?php echo htmlentities($value['device_type']);?></td>
 			      <td><?php echo htmlentities($value['manufacturer']);?></td>
 			      <td><?php echo htmlentities($value['serial_number']);?></td>
+				  <td><?php echo htmlentities($value['status']);?></td>
 			      <td><a class="mr-3" href="manage.php?auto_id=<?php echo $value['auto_id'];?>">Edit</a></td>
 				  <td><a class="text-danger" href="delete.php?delete=<?php echo $value['auto_id'];?>" onclick="deleteThis(this, event);">Delete</a></td>		
 			    </tr>
