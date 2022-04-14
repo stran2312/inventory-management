@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+
 <?php
 require_once('connection.php');
 	
@@ -7,8 +9,10 @@ if(isset($_REQUEST['delete'])){
 	$result = $dblink->query($sql);
 	if($result == true){
 		echo '<h2 class="container mt-2 text-center text-success">Data deleted successfully!</h2>';
+		echo '<a href="index.php" class="btn btn-primary">Home</a>';
 	}else{
 		echo '<h2 class="container mt-2 text-center text-danger">Data failed to delete!</h2>';
+		echo '<a href="index.php" class="btn btn-primary">Home</a>';
 	}
 	
 }

@@ -140,8 +140,8 @@ $resultManufacturer = $dblink->query($sql2) or die("Something went wrong with $s
 			      <td><?php echo htmlentities($value['manufacturer']);?></td>
 			      <td><?php echo htmlentities($value['serial_number']);?></td>
 				  <td><?php echo htmlentities($value['status']);?></td>
-			      <td><a class="mr-3" href="manage.php?auto_id=<?php echo $value['auto_id'];?>">Edit</a></td>
-				  <td><a class="text-danger" href="delete.php?delete=<?php echo $value['auto_id'];?>" onclick="deleteThis(this, event);">Delete</a></td>		
+			      <td><a class="btn btn-outline-primary" href="manage.php?auto_id=<?php echo $value['auto_id'];?>">Edit</a></td>
+				  <td><a class="btn btn-outline-danger" href="delete.php?delete=<?php echo $value['auto_id'];?>" onclick="deleteThis(this, event);">Delete</a></td>		
 			    </tr>
 				<?php
 			}

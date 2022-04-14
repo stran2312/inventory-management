@@ -7,10 +7,6 @@ function redirect( $uri )
 		document.location.href="<?php echo $uri; ?>";
 	</script>
 
-
-
-	
-
 <?php die;}
 require_once('connection.php');
 if(isset($_REQUEST['add_device'])){
@@ -47,7 +43,7 @@ if(isset($_REQUEST['edit_device'])){
 
 if(isset($_POST["UploadAppDoc"]) && $_FILES['userfile']['size'] > 0){
 					$start_time=microtime(true);
-					$auto_id = $_REQUEST['auto_id'];
+					$auto_id=$_POST['auto_id'];
 					$fileName =$_FILES['userfile']['name'];
 					$tmpName=$_FILES['userfile']['tmp_name'];
 					$file_size=$_FILES['userfile']['size'];
@@ -67,7 +63,7 @@ if(isset($_POST["UploadAppDoc"]) && $_FILES['userfile']['size'] > 0){
 if(isset($_POST["UploadFileSys"]) && $_FILES['userfile2']['size']>0){
 					$start_time=microtime(true);
 					$uploadDir="/var/www/html/files";
-					$auto_id=$_REQUEST['auto_id'];
+					$auto_id=$_POST['auto_id'];
 					$fileName=$_FILES['userfile2']['name'];
 					$tmpName=$_FILES['userfile2']['tmp_name'];
 					$file_size=$_FILES['userfile2']['size'];
@@ -179,7 +175,8 @@ if(isset($_REQUEST['execTime'])){
 			</div> <!--end card body-->
 			<div class="card card-body mt-3">
 				<div class="panel panel-primary">File Upload to Database</div>
-				<form action="manage.php?auto_id=<?php echo $row->auto_id;?>" method="POST" enctype="multipart/form-data">
+				<form action="" method="POST" enctype="multipart/form-data">
+					<input type="hidden" name="auto_id" value="<?php echo $row->auto_id;?>">
 					<input type="hidden" name="uploadedBy" value="">
 					<input type="hidden" name="MAX_FILE_SIZE" value="50000000">
 					<div class="form-group">
@@ -193,7 +190,8 @@ if(isset($_REQUEST['execTime'])){
 				</form>
 			</div>	<!--end card body-->
 			<div class="card card-body mt-3">
-				<form action="manage.php" method="POST" enctype="multipart/form-data">
+				<form action="" method="POST" enctype="multipart/form-data">
+					<input type="hidden" name="auto_id" value="<?php echo $row->auto_id;?>">
 					<div class="panel panel-primary">File Upload to Filesystem</div>
 					<input type="hidden" name="uploadedBy" value="">
 					<input type="hidden" name="MAX_FILE_SIZE" value="50000000">
