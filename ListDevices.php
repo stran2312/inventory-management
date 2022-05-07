@@ -1,12 +1,46 @@
 <?php
 require_once('connection.php');
-$sql = "SELECT * FROM `device_table`";
-$result = $dblink->query($sql) or die("Something went wrong with $sql");
-header('Content-Type: application/json');
-header('HTTP/1.1 200 OK');
-$output[]="Status: OK";
-$output[]="MSG: ";
-$output[]="";
-$responseData=json_encode($output);
-echo $responseData;
+$serial_number=$_REQUEST['sn'];
+if ( $serial_number == NULL)
+{
+	header('Content-Type: application/json');
+	header('HTTP/1.1 200 OK');
+	$output[]="Status: Invalid Data";
+	$output[]="MSG: serial number must not be blank.";
+	$output[]="";
+	$responseData=json_encode($output);
+	echo $responseData;
+	die();
+}
+else
+{
+	$sql="Select * from `device_table` where `serial_number`='$serial_number'";
+	$result=$dblink->query($sql) or
+		die("Something went wrong with $sql");
+	$device=$result->fetch_array(MYSQLI_ASSOC);
+	if ($result->num_rows>0)
+	{
+		header('Content-Type: application/json');
+		header('HTTP/1.1 200 OK');
+		$output[]="Status: OK";
+		$output[]="MSG: ";
+		$data[]='Maufacturer: '.$device['manufacturer'];
+		$data[]='Device Type: '.$device['device_type'];
+		$data[]='Serial Number: '.$device['serial_number'];
+		$output[]=$data;
+		$responseData=json_encode($output);
+		echo $responseData;
+	}
+	else
+	{
+		header('Content-Type: application/json');
+		header('HTTP/1.1 200 OK');
+		$output[]="Status: Not Found";
+		$output[]="MSG: serial number: $serial_number not in database";
+		$data[]="";
+		$output[]=$data;
+		$responseData=json_encode($output);
+		echo $responseData;
+	}
+}
 ?>

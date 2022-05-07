@@ -1,7 +1,10 @@
-<?php
-$hostname = "localhost";
-$un = "webuser";
-$pw = "VBwYd4qnbLgd2jl7";
-$db = "devices";
-$dblink = new mysqli($hostname,$un,$pw,$db);
-?>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+</body>
+</html>

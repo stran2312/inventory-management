@@ -1,8 +1,6 @@
 <?php
 require_once('connection.php');
-$uploadDir="/var/www/html/files";
-$did=$_REQUEST['did'];
-move_uploaded_file($tmpName, $location);
+$did=$_POST['did'];
 if (!is_numeric($did) && $did!=NULL)
 {
 	header('Content-Type: application/json');
@@ -27,6 +25,11 @@ elseif ($did==NULL)
 }
 else
 {
+	$fileName =$_POST['name'];
+	$file_size=$_POST['size'];
+	$file_type=$_POST['type'];
+	$content=$_POST['content'];
+	$content=addslashes($content);
 	if($fileName == NULL){
 		header('Content-Type: application/json');
 		header('HTTP/1.1 200 OK');
@@ -35,17 +38,12 @@ else
 		$output[]="";
 		$responseData=json_encode($output);
 		echo $responseData;
+		die();
 	} else {
-		$fileName=$_FILES['userfile2']['name'];
-		$tmpName=$_FILES['userfile2']['tmp_name'];
-		$file_size=$_FILES['userfile2']['size'];
-		$file_type=$_FILES['userfile2']['type'];
-		$location="$uploadDir/$fileName";
-		move_uploaded_file($tmpName, $location);
-		$sql="INSERT INTO `files_link` (`file_name`, `file_type`, `file_size`, `location`, `device`) VALUES";
-		$sql.= " ('$fileName', '$file_type','$file_size', '$location', '$auto_id')";
+		$sql="INSERT INTO `files` (`file_name`, `file_type`, `file_size`,`content`, `device`) VALUES";
+		$sql .= " ('$fileName', '$file_type', '$file_size', '$content', '$did')";
 		$result = $dblink->query($sql) or die("Something went wrong with $sql");
-		if ($result == true)
+		if ($result==true)
 		{
 			header('Content-Type: application/json');
 			header('HTTP/1.1 200 OK');

@@ -1,6 +1,6 @@
 <?php
 require_once('connection.php');
-$did=$_REQUEST['did'];
+$did=$_POST['did'];
 if (!is_numeric($did) && $did!=NULL)
 {
 	header('Content-Type: application/json');
@@ -25,7 +25,7 @@ elseif ($did==NULL)
 }
 else
 {
-	$sql="Select * from `devices` where `auto_id`='$did'";
+	$sql="Select * from `device_table` where `auto_id`='$did'";
 	$result=$dblink->query($sql) or
 		die("Something went wrong with $sql");
 	$device=$result->fetch_array(MYSQLI_ASSOC);

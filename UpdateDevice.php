@@ -17,7 +17,7 @@ if (!is_numeric($did) && $did!=NULL)
 	echo $responseData;
 	die();
 }
-elseif ($did==NULL)
+else if ($did==NULL)
 {
 	header('Content-Type: application/json');
 	header('HTTP/1.1 200 OK');
@@ -27,10 +27,46 @@ elseif ($did==NULL)
 	$responseData=json_encode($output);
 	echo $responseData;
 	die();
+} else if($device_type == NULL) {
+	header('Content-Type: application/json');
+	header('HTTP/1.1 200 OK');
+	$output[]="Status: Invalid Data";
+	$output[]="MSG: Device Type must not be blank.";
+	$output[]="";
+	$responseData=json_encode($output);
+	echo $responseData;
+	die();
+} else if($manufacture == NULL) {
+	header('Content-Type: application/json');
+	header('HTTP/1.1 200 OK');
+	$output[]="Status: Invalid Data";
+	$output[]="MSG: Manufacture must not be blank.";
+	$output[]="";
+	$responseData=json_encode($output);
+	echo $responseData;
+	die();
+} else if($serial_number == NULL || !is_numeric($serial_number)) {
+	header('Content-Type: application/json');
+	header('HTTP/1.1 200 OK');
+	$output[]="Status: Invalid Data";
+	$output[]="MSG: Serial Number must not be blank and must be a number.";
+	$output[]="";
+	$responseData=json_encode($output);
+	echo $responseData;
+	die();
+} else if($status == NULL) {
+	header('Content-Type: application/json');
+	header('HTTP/1.1 200 OK');
+	$output[]="Status: Invalid Data";
+	$output[]="MSG: Status must not be blank.";
+	$output[]="";
+	$responseData=json_encode($output);
+	echo $responseData;
+	die();
 }
 else
 {
-	$sql = "UPDATE `device_table` SET device_type = '$device_type', manufacturer = '$manufacturer', serial_number = '$serial_number', status = '$status' WHERE auto_id = '$did'";
+	$sql = "UPDATE `device_table` SET device_type = '$device_type', manufacturer = '$manufacture', serial_number = '$serial_number', status = '$status' WHERE auto_id = '$did'";
 	$result = $dblink->query($sql) or die("Something went wrong with $sql");
 	$device=$result->fetch_array(MYSQLI_ASSOC);
 	if ($result->num_rows>0)

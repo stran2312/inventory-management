@@ -25,10 +25,10 @@ elseif ($did==NULL)
 }
 else
 {
-	$sql="DELETE FROM `devices` WHERE `auto_id`='$did'";
+	$sql="DELETE FROM `device_table` WHERE `auto_id`='$did'";
 	$result=$dblink->query($sql) or
 		die("Something went wrong with $sql");
-	if ($result == true)
+	if ($result->num_rows>0)
 	{
 		header('Content-Type: application/json');
 		header('HTTP/1.1 200 OK');
