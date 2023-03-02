@@ -1,15 +1,15 @@
-*#Inventory Management API*
+#*Inventory Management API*
 
 This API is designed to provide a simple and efficient way to manage inventory data. The API includes methods for uploading and updating device data, listing and deleting devices, and viewing device information.
 Project URL: https://ec2-3-137-205-7.us-east-2.compute.amazonaws.com/
 
 
-*#Getting Started*
+#*Getting Started*
 Prerequisites
 PHP 7.x or higher
 MySQL 5.6 or higher
 
-*#Installing*
+#*Installing*
 1. Clone the repository to your local machine.
 2. Navigate to the project root directory in your terminal.
 3. Run composer install to install the required dependencies.
