@@ -1,7 +1,7 @@
 # **Inventory Management API**
 
 This API is designed to provide a simple and efficient way to manage inventory data. The API includes methods for uploading and updating device data, listing and deleting devices, and viewing device information.
-Project URL: https://ec2-3-137-205-7.us-east-2.compute.amazonaws.com/
+<br>Project URL: https://ec2-3-137-205-7.us-east-2.compute.amazonaws.com/
 
 
 # **Getting Started**
@@ -22,23 +22,23 @@ php artisan serve
 # **API Endpoints**
 Upload File.
 POST /api/Upload.php.
-Uploads device data from a CSV file.
+<br>Uploads device data from a CSV file.
 
 Update Device.
-PUT /api/UpdateDevice.php.
-Updates the device information for the specified device ID.
+<br>PUT /api/UpdateDevice.php.
+<br>Updates the device information for the specified device ID.
 
 List Devices.
-GET /api/ListDevices.php.
-Returns a list of all devices in the inventory.
+<br>GET /api/ListDevices.php.
+<br>Returns a list of all devices in the inventory.
 
 Delete Device.
-DELETE /api/Delete.php/{id}.
-Deletes the device information for the specified device ID.
+<br>DELETE /api/Delete.php/{id}.
+<br>Deletes the device information for the specified device ID.
 
 View Device.
-GET /api/ViewDevice.php/{id}.
-Returns the device information for the specified device ID.
+<br>GET /api/ViewDevice.php/{id}.
+<br>Returns the device information for the specified device ID.
 
 # **Security**
 This API redirect all requests to https/ port 443 and Fast_CGI/ PHP_FPM, and NGINX web server.
